@@ -20,67 +20,47 @@ namespace GenericCollection
             contacts.Add(contact);
         }
 
-        public List<Contact> GetContacts()
+        public void DisplayContacts()
         {
-            return contacts;
+            Console.WriteLine("Contacts:");
+
+            foreach (Contact contact in contacts)
+            {
+                Console.WriteLine($"First Name: {contact.FirstName}");
+                Console.WriteLine($"Last Name: {contact.LastName}");
+                Console.WriteLine($"Address: {contact.Address}");
+                Console.WriteLine($"City: {contact.City}");
+                Console.WriteLine($"State: {contact.State}");
+                Console.WriteLine($"Zip: {contact.Zip}");
+                Console.WriteLine($"Phone Number: {contact.PhoneNumber}");
+                Console.WriteLine($"Email: {contact.Email}");
+                Console.WriteLine();
+            }
         }
 
-        public Contact GetContactByName(string firstName, string lastName)
+        public void DeleteContact(string firstName, string lastName)
         {
+            Contact contactToDelete = null;
+
             foreach (Contact contact in contacts)
             {
                 if (contact.FirstName.Equals(firstName) && contact.LastName.Equals(lastName))
                 {
-                    return contact;
+                    contactToDelete = contact;
+                    break;
                 }
             }
-            return null;
-        }
 
-        public bool EditContact(string firstName, string lastName)
-        {
-            Contact contact = GetContactByName(firstName, lastName);
-            if (contact == null)
+            if (contactToDelete != null)
             {
-                return false;
+                contacts.Remove(contactToDelete);
+                Console.WriteLine("Contact deleted successfully!");
             }
-
-            Console.WriteLine("Enter new contact details:");
-
-            Console.Write("First Name: ");
-            string newFirstName = Console.ReadLine();
-
-            Console.Write("Last Name: ");
-            string newLastName = Console.ReadLine();
-
-            Console.Write("Address: ");
-            string newAddress = Console.ReadLine();
-
-            Console.Write("City: ");
-            string newCity = Console.ReadLine();
-
-            Console.Write("State: ");
-            string newState = Console.ReadLine();
-
-            Console.Write("Zip: ");
-            string newZip = Console.ReadLine();
-
-            Console.Write("Phone Number: ");
-            string newPhoneNumber = Console.ReadLine();
-
-            Console.Write("Email: ");
-            string newEmail = Console.ReadLine();
-
-            contact.FirstName = newFirstName;
-            contact.LastName = newLastName;
-            contact.Address = newAddress;
-            contact.City = newCity;
-            contact.State = newState;
-            contact.Zip = newZip;
-            contact.PhoneNumber = newPhoneNumber;
-            contact.Email = newEmail;
-
-            return true;
+            else
+            {
+                Console.WriteLine("Contact not found. Please try again.");
+            }
         }
     }
 }
+
