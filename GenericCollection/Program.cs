@@ -17,7 +17,8 @@ namespace GenericCollection
                 Console.WriteLine("Address Book");
                 Console.WriteLine("1. Add Contact");
                 Console.WriteLine("2. Display All Contacts");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Edit Contact");
+                Console.WriteLine("4. Exit");
                 Console.Write("Enter your choice: ");
                 string choice = Console.ReadLine();
 
@@ -33,6 +34,17 @@ namespace GenericCollection
                         DisplayContacts(addressBook);
                         break;
                     case "3":
+                        if (EditContact(addressBook))
+                        {
+                            Console.WriteLine("Contact edited successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Contact not found. Please try again.");
+                        }
+                        Console.WriteLine();
+                        break;
+                    case "4":
                         Console.WriteLine("Exiting Address Book. Goodbye!");
                         return;
                     default:
@@ -40,6 +52,11 @@ namespace GenericCollection
                         break;
                 }
             }
+        }
+
+        private static bool EditContact(AddressBook addressBook)
+        {
+            throw new NotImplementedException();
         }
 
         static Contact GetContactDetails()
@@ -85,12 +102,8 @@ namespace GenericCollection
                 Console.WriteLine($"Address: {contact.Address}");
                 Console.WriteLine($"City: {contact.City}");
                 Console.WriteLine($"State: {contact.State}");
-                Console.WriteLine($"Zip: {contact.Zip}");
-                Console.WriteLine($"Phone Number: {contact.PhoneNumber}");
-                Console.WriteLine($"Email: {contact.Email}");
                 Console.WriteLine();
             }
-
         }
-    }
+    } 
 }

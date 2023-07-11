@@ -28,6 +28,5 @@ namespace GenericCollection
             PhoneNumber = phoneNumber;
             Email = email;
         }
-
     }
 }
