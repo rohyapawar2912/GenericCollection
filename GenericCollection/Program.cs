@@ -10,7 +10,7 @@ namespace GenericCollection
     {
         static void Main(string[] args)
         {
-            List<Contact> addressBook = new List<Contact>();
+            AddressBook addressBook = new AddressBook();
 
             while (true)
             {
@@ -24,8 +24,8 @@ namespace GenericCollection
                 switch (choice)
                 {
                     case "1":
-                        Contact contact = CreateContact();
-                        addressBook.Add(contact);
+                        Contact contact = GetContactDetails();
+                        addressBook.AddContact(contact);
                         Console.WriteLine("Contact added successfully!");
                         Console.WriteLine();
                         break;
@@ -42,7 +42,7 @@ namespace GenericCollection
             }
         }
 
-        static Contact CreateContact()
+        static Contact GetContactDetails()
         {
             Console.WriteLine("Enter Contact Details:");
 
@@ -74,11 +74,11 @@ namespace GenericCollection
             return contact;
         }
 
-        static void DisplayContacts(List<Contact> addressBook)
+        static void DisplayContacts(AddressBook addressBook)
         {
             Console.WriteLine("Contacts:");
 
-            foreach (Contact contact in addressBook)
+            foreach (Contact contact in addressBook.GetContacts())
             {
                 Console.WriteLine($"First Name: {contact.FirstName}");
                 Console.WriteLine($"Last Name: {contact.LastName}");
@@ -90,6 +90,7 @@ namespace GenericCollection
                 Console.WriteLine($"Email: {contact.Email}");
                 Console.WriteLine();
             }
+
         }
     }
 }
